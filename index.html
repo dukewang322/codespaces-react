@@ -1,35 +1,1078 @@
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <link rel="icon" href="/favicon.ico" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="theme-color" content="#000000" />
-    <meta
-      name="description"
-      content="Web site created using @vitejs/plugin-react"
-    />
-    <link rel="apple-touch-icon" href="/logo192.png" />
-    <!--
-      manifest.json provides metadata used when your web app is installed on a
-      user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/
-    -->
-    <link rel="manifest" href="/manifest.json" />
-    <title>React App</title>
-  </head>
-  <body>
-    <noscript>You need to enable JavaScript to run this app.</noscript>
-    <div id="root"></div>
-    <!--
-      This HTML file is a template.
-      If you open it directly in the browser, you will see an empty page.
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>智合并购 - AI赋能的智能企业并购平台</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&display=swap');
+        body {
+            font-family: 'Noto Sans SC', sans-serif;
+        }
+        .gradient-bg {
+            background: linear-gradient(135deg, #1e3a8a 0%, #2563eb 100%);
+        }
+        .card-hover:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+        .transition-all {
+            transition: all 0.3s ease;
+        }
+        .feature-icon {
+            width: 60px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 12px;
+            margin-bottom: 1rem;
+        }
+        .stats-card {
+            backdrop-filter: blur(10px);
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Navigation -->
+    <nav class="bg-white shadow-md sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <div class="flex items-center">
+                    <div class="flex-shrink-0 flex items-center">
+                        <i class="fas fa-robot text-blue-600 text-2xl mr-2"></i>
+                        <span class="text-xl font-bold text-gray-800">智合并购</span>
+                    </div>
+                    <div class="hidden md:ml-10 md:flex md:space-x-8">
+                        <a href="#" class="text-blue-600 border-blue-500 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">首页</a>
+                        <a href="#features" class="text-gray-500 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 border-transparent hover:border-gray-300 text-sm font-medium">平台优势</a>
+                        <a href="#process" class="text-gray-500 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 border-transparent hover:border-gray-300 text-sm font-medium">交易流程</a>
+                        <a href="#cases" class="text-gray-500 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 border-transparent hover:border-gray-300 text-sm font-medium">成功案例</a>
+                        <a href="#pricing" class="text-gray-500 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 border-transparent hover:border-gray-300 text-sm font-medium">服务方案</a>
+                        <a href="#contact" class="text-gray-500 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 border-transparent hover:border-gray-300 text-sm font-medium">联系我们</a>
+                    </div>
+                </div>
+                <div class="hidden md:flex items-center space-x-4">
+                    <a href="#" onclick="toggleLoginModal()" class="text-gray-600 hover:text-blue-600 px-3 py-2 text-sm font-medium">登录</a>
+                    <a href="#" onclick="toggleRegistrationModal()" class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-md text-sm font-medium transition-all">立即注册</a>
+                </div>
+                <div class="-mr-2 flex items-center md:hidden">
+                    <button type="button" class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-blue-500" aria-controls="mobile-menu" aria-expanded="false" id="mobile-menu-button">
+                        <span class="sr-only">打开主菜单</span>
+                        <svg class="block h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                        </svg>
+                        <svg class="hidden h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
 
-      You can add webfonts, meta tags, or analytics to this file.
-      The build step will place the bundled scripts into the <body> tag.
+        <!-- Mobile menu -->
+        <div class="hidden md:hidden" id="mobile-menu">
+            <div class="pt-2 pb-3 space-y-1">
+                <a href="#" class="bg-blue-50 border-blue-500 text-blue-700 block pl-3 pr-4 py-2 border-l-4 text-base font-medium">首页</a>
+                <a href="#features" class="border-transparent text-gray-600 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-800 block pl-3 pr-4 py-2 border-l-4 text-base font-medium">平台优势</a>
+                <a href="#process" class="border-transparent text-gray-600 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-800 block pl-3 pr-4 py-2 border-l-4 text-base font-medium">交易流程</a>
+                <a href="#cases" class="border-transparent text-gray-600 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-800 block pl-3 pr-4 py-2 border-l-4 text-base font-medium">成功案例</a>
+                <a href="#pricing" class="border-transparent text-gray-600 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-800 block pl-3 pr-4 py-2 border-l-4 text-base font-medium">服务方案</a>
+                <a href="#contact" class="border-transparent text-gray-600 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-800 block pl-3 pr-4 py-2 border-l-4 text-base font-medium">联系我们</a>
+            </div>
+            <div class="pt-4 pb-3 border-t border-gray-200">
+                <div class="flex items-center px-5 space-x-4">
+                    <a href="#" onclick="toggleLoginModal()" class="text-gray-600 hover:text-blue-600 px-3 py-2 text-sm font-medium">登录</a>
+                    <a href="#" onclick="toggleRegistrationModal()" class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-md text-sm font-medium transition-all">立即注册</a>
+                </div>
+            </div>
+        </div>
+    </nav>
 
-      To begin the development, run `npm start` or `yarn start`.
-      To create a production bundle, use `npm run build` or `yarn build`.
-    -->
-  </body>
-  <script type="module" src="/src/index.jsx"></script>
+    <!-- Merged Hero & Stats Section -->
+    <div class="relative bg-gray-900">
+        <div class="absolute inset-0">
+            <img class="h-full w-full object-cover opacity-40" src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80" alt="Business professionals">
+            <div class="absolute inset-0 bg-gradient-to-r from-blue-800 to-blue-600 opacity-70 mix-blend-multiply" aria-hidden="true"></div>
+        </div>
+        <div class="relative max-w-7xl mx-auto py-24 px-4 sm:py-32 sm:px-6 lg:px-8">
+            <div class="text-center">
+                <h1 class="text-4xl font-extrabold tracking-tight text-white sm:text-5xl lg:text-6xl">
+                    为您的企业锁定理想买家
+                </h1>
+                <p class="mt-6 max-w-3xl mx-auto text-xl text-blue-100">
+                    基于10,000+真实并购案例数据库，我们的定制AI算法将深度解析您的企业特征，精准匹配战略买家
+                </p>
+                <div class="mt-10 flex justify-center space-x-4">
+                    <a href="#" onclick="toggleRegistrationModal()" class="bg-white text-blue-600 hover:bg-gray-100 px-8 py-3 border border-transparent rounded-md text-base font-medium md:py-4 md:text-lg md:px-10 transition-all">
+                        免费注册
+                    </a>
+                    <a href="#" class="bg-blue-500 bg-opacity-60 hover:bg-opacity-70 text-white px-8 py-3 border border-transparent rounded-md text-base font-medium md:py-4 md:text-lg md:px-10 transition-all">
+                        了解更多
+                    </a>
+                </div>
+            </div>
+
+            <div class="mt-20 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6">
+                <div class="bg-white bg-opacity-10 backdrop-blur-sm rounded-xl p-6 border border-white border-opacity-20 transition-all hover:bg-opacity-20">
+                    <p class="text-4xl font-bold text-white">10,000+</p>
+                    <p class="mt-2 text-lg font-medium text-blue-100">并购案例数据库</p>
+                    <p class="mt-2 text-sm text-blue-200">覆盖各行业真实交易数据</p>
+                </div>
+                <div class="bg-white bg-opacity-10 backdrop-blur-sm rounded-xl p-6 border border-white border-opacity-20 transition-all hover:bg-opacity-20">
+                    <p class="text-4xl font-bold text-white">85%</p>
+                    <p class="mt-2 text-lg font-medium text-blue-100">匹配精准度</p>
+                    <p class="mt-2 text-sm text-blue-200">行业领先的AI匹配算法</p>
+                </div>
+                <div class="bg-white bg-opacity-10 backdrop-blur-sm rounded-xl p-6 border border-white border-opacity-20 transition-all hover:bg-opacity-20">
+                    <p class="text-4xl font-bold text-white">30%</p>
+                    <p class="mt-2 text-lg font-medium text-blue-100">平均溢价提升</p>
+                    <p class="mt-2 text-sm text-blue-200">相比传统并购方式</p>
+                </div>
+                <div class="bg-white bg-opacity-10 backdrop-blur-sm rounded-xl p-6 border border-white border-opacity-20 transition-all hover:bg-opacity-20">
+                    <p class="text-4xl font-bold text-white">99.99%</p>
+                    <p class="mt-2 text-lg font-medium text-blue-100">信息保密安全率</p>
+                    <p class="mt-2 text-sm text-blue-200">全流程数据和信息安全保障</p>
+                </div>
+                <div class="bg-white bg-opacity-10 backdrop-blur-sm rounded-xl p-6 border border-white border-opacity-20 transition-all hover:bg-opacity-20">
+                    <p class="text-4xl font-bold text-white">50+</p>
+                    <p class="mt-2 text-lg font-medium text-blue-100">行业专家</p>
+                    <p class="mt-2 text-sm text-blue-200">提供全程专业支持</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Value Proposition -->
+    <div class="py-12 bg-white" id="features">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="lg:text-center">
+                <h2 class="text-base text-blue-600 font-semibold tracking-wide uppercase">AI赋能 精准匹配</h2>
+                <p class="mt-2 text-3xl leading-8 font-extrabold tracking-tight text-gray-900 sm:text-4xl">
+                    人工智能赋能的专家护航体系
+                </p>
+                <p class="mt-4 max-w-2xl text-xl text-gray-500 lg:mx-auto">
+                    我们深谙传承毕生心血的分量。在人工智能技术驱动的同时，由顶尖并购专家团队全程护航，确保每个环节提供定制化解决方案与超越期待的服务品质
+                </p>
+            </div>
+
+            <div class="mt-20">
+                <div class="grid grid-cols-1 gap-12 md:grid-cols-2 lg:grid-cols-3">
+                    <div class="pt-6">
+                        <div class="flow-root bg-gray-50 rounded-lg px-6 pb-8 h-full transition-all card-hover">
+                            <div class="-mt-6">
+                                <div class="feature-icon bg-blue-100 text-blue-600 mx-auto">
+                                    <i class="fas fa-brain text-2xl"></i>
+                                </div>
+                                <h3 class="mt-4 text-lg font-medium text-gray-900 text-center">智能估值模型</h3>
+                                <p class="mt-3 text-base text-gray-500">
+                                    基于机器学习的企业估值系统，综合考虑行业特性、财务数据、市场环境等数百个维度，提供最接近市场真实交易价格的估值参考。
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="pt-6">
+                        <div class="flow-root bg-gray-50 rounded-lg px-6 pb-8 h-full transition-all card-hover">
+                            <div class="-mt-6">
+                                <div class="feature-icon bg-green-100 text-green-600 mx-auto">
+                                    <i class="fas fa-project-diagram text-2xl"></i>
+                                </div>
+                                <h3 class="mt-4 text-lg font-medium text-gray-900 text-center">战略匹配算法</h3>
+                                <p class="mt-3 text-base text-gray-500">
+                                    独创的产业协同度分析模型，从战略互补、资源整合、管理适配等多角度评估买卖双方匹配度，大幅提升交易成功率。
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="pt-6">
+                        <div class="flow-root bg-gray-50 rounded-lg px-6 pb-8 h-full transition-all card-hover">
+                            <div class="-mt-6">
+                                <div class="feature-icon bg-purple-100 text-purple-600 mx-auto">
+                                    <i class="fas fa-shield-alt text-2xl"></i>
+                                </div>
+                                <h3 class="mt-4 text-lg font-medium text-gray-900 text-center">风险预警系统</h3>
+                                <p class="mt-3 text-base text-gray-500">
+                                    实时监测交易全流程风险点，从财务异常、法律瑕疵到整合障碍，提前预警并提供解决方案，保障交易顺利完成。
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="pt-6">
+                        <div class="flow-root bg-gray-50 rounded-lg px-6 pb-8 h-full transition-all card-hover">
+                            <div class="-mt-6">
+                                <div class="feature-icon bg-yellow-100 text-yellow-600 mx-auto">
+                                    <i class="fas fa-chart-line text-2xl"></i>
+                                </div>
+                                <h3 class="mt-4 text-lg font-medium text-gray-900 text-center">市场趋势洞察</h3>
+                                <p class="mt-3 text-base text-gray-500">
+                                    行业并购热度分析、估值倍数变化、交易结构演变等深度市场洞察，帮助买卖双方把握最佳交易时机。
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="pt-6">
+                        <div class="flow-root bg-gray-50 rounded-lg px-6 pb-8 h-full transition-all card-hover">
+                            <div class="-mt-6">
+                                <div class="feature-icon bg-red-100 text-red-600 mx-auto">
+                                    <i class="fas fa-user-tie text-2xl"></i>
+                                </div>
+                                <h3 class="mt-4 text-lg font-medium text-gray-900 text-center">专家顾问团队</h3>
+                                <p class="mt-3 text-base text-gray-500">
+                                    来自投行、四大、产业集团的资深专家提供全程顾问服务，从交易结构设计到交割后整合，确保每个环节专业可靠。
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="pt-6">
+                        <div class="flow-root bg-gray-50 rounded-lg px-6 pb-8 h-full transition-all card-hover">
+                            <div class="-mt-6">
+                                <div class="feature-icon bg-indigo-100 text-indigo-600 mx-auto">
+                                    <i class="fas fa-lock text-2xl"></i>
+                                </div>
+                                <h3 class="mt-4 text-lg font-medium text-gray-900 text-center">数据安全屋</h3>
+                                <p class="mt-3 text-base text-gray-500">
+                                    国密级数据加密、处理和分发机制，细颗粒权限管理体系，确保商业机密安全。敏感信息脱敏处理，多重验证机制保障账户和数据安全可信。
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Process Section -->
+    <div class="bg-gray-50 py-16" id="process">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="lg:text-center">
+                <h2 class="text-base text-blue-600 font-semibold tracking-wide uppercase">高效流程</h2>
+                <p class="mt-2 text-3xl leading-8 font-extrabold tracking-tight text-gray-900 sm:text-4xl">
+                    四步完成企业并购交易
+                </p>
+                <p class="mt-4 max-w-2xl text-xl text-gray-500 lg:mx-auto">
+                    我们简化了传统并购的复杂流程，通过智能系统大幅提升效率，平均交易周期缩短40%
+                </p>
+            </div>
+
+            <div class="mt-20">
+                <div class="space-y-12 lg:space-y-0 lg:grid lg:grid-cols-4 lg:gap-x-8">
+                    <div class="relative group">
+                        <div class="absolute -inset-1 bg-gradient-to-r from-blue-600 to-blue-400 rounded-lg blur opacity-25 group-hover:opacity-100 transition duration-200"></div>
+                        <div class="relative bg-white p-6 rounded-lg h-full transition-all card-hover">
+                            <div class="flex items-center justify-center h-12 w-12 rounded-md bg-blue-500 text-white">
+                                <span class="text-xl font-bold">1</span>
+                            </div>
+                            <h3 class="mt-4 text-lg font-medium text-gray-900">注册与认证</h3>
+                            <p class="mt-2 text-base text-gray-500">
+                                完成企业实名认证，提交基本信息。系统将自动生成初步的企业画像。
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="relative group">
+                        <div class="absolute -inset-1 bg-gradient-to-r from-green-600 to-green-400 rounded-lg blur opacity-25 group-hover:opacity-100 transition duration-200"></div>
+                        <div class="relative bg-white p-6 rounded-lg h-full transition-all card-hover">
+                            <div class="flex items-center justify-center h-12 w-12 rounded-md bg-green-500 text-white">
+                                <span class="text-xl font-bold">2</span>
+                            </div>
+                            <h3 class="mt-4 text-lg font-medium text-gray-900">智能匹配</h3>
+                            <p class="mt-2 text-base text-gray-500">
+                                AI系统分析企业特征，72小时内推送最匹配的潜在交易对手方。
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="relative group">
+                        <div class="absolute -inset-1 bg-gradient-to-r from-purple-600 to-purple-400 rounded-lg blur opacity-25 group-hover:opacity-100 transition duration-200"></div>
+                        <div class="relative bg-white p-6 rounded-lg h-full transition-all card-hover">
+                            <div class="flex items-center justify-center h-12 w-12 rounded-md bg-purple-500 text-white">
+                                <span class="text-xl font-bold">3</span>
+                            </div>
+                            <h3 class="mt-4 text-lg font-medium text-gray-900">深度对接</h3>
+                            <p class="mt-2 text-base text-gray-500">
+                                在保密协议下展开尽职调查，专家团队协助谈判与交易结构设计。
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="relative group">
+                        <div class="absolute -inset-1 bg-gradient-to-r from-indigo-600 to-indigo-400 rounded-lg blur opacity-25 group-hover:opacity-100 transition duration-200"></div>
+                        <div class="relative bg-white p-6 rounded-lg h-full transition-all card-hover">
+                            <div class="flex items-center justify-center h-12 w-12 rounded-md bg-indigo-500 text-white">
+                                <span class="text-xl font-bold">4</span>
+                            </div>
+                            <h3 class="mt-4 text-lg font-medium text-gray-900">交易完成</h3>
+                            <p class="mt-2 text-base text-gray-500">
+                                法律文件签署、资金监管与交割，提供6个月整合期跟踪服务。
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- CTA Banner for Registration -->
+    <div class="bg-blue-700" id="register">
+        <div class="max-w-2xl mx-auto text-center py-16 px-4 sm:py-20 sm:px-6 lg:px-8">
+            <h2 class="text-3xl font-extrabold text-white sm:text-4xl">
+                <span class="block">立即加入智合并购平台</span>
+                <span class="block">开启您的智能并购之旅</span>
+            </h2>
+            <p class="mt-4 text-lg leading-6 text-blue-200">
+                无论您是寻求资本退出的企业主，还是寻找优质标的的投资方，我们都将为您提供最专业的服务
+            </p>
+            <div class="mt-10 flex justify-center space-x-4">
+                <a href="#" onclick="toggleRegistrationModal()" class="bg-white text-blue-700 hover:bg-gray-100 px-8 py-3 border border-transparent rounded-md text-base font-medium md:py-4 md:text-lg md:px-10 transition-all">
+                    资金方入驻
+                </a>
+                <a href="#" onclick="toggleRegistrationModal()" class="bg-blue-500 bg-opacity-60 hover:bg-opacity-70 text-white px-8 py-3 border border-transparent rounded-md text-base font-medium md:py-4 md:text-lg md:px-10 transition-all">
+                    企业方入驻
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Registration Modal (hidden by default) -->
+    <div class="fixed z-50 inset-0 overflow-y-auto hidden" aria-labelledby="registration-modal-title" role="dialog" aria-modal="true" id="registrationModal">
+        <div class="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
+            <div class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" aria-hidden="true"></div>
+            <span class="hidden sm:inline-block sm:align-middle sm:h-screen" aria-hidden="true">&#8203;</span>
+            <div class="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full">
+                <div class="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4 relative">
+                    <button type="button" onclick="toggleRegistrationModal()" class="absolute top-4 right-4 text-gray-400 hover:text-gray-500">
+                        <span class="sr-only">关闭</span>
+                        <i class="fas fa-times"></i>
+                    </button>
+                    <div class="sm:flex sm:items-start">
+                        <div class="mx-auto flex-shrink-0 flex items-center justify-center h-12 w-12 rounded-full bg-blue-100 sm:mx-0 sm:h-10 sm:w-10">
+                            <i class="fas fa-user-plus text-blue-600"></i>
+                        </div>
+                        <div class="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left w-full">
+                            <h3 class="text-lg leading-6 font-medium text-gray-900" id="registration-modal-title">
+                                创建您的账户
+                            </h3>
+                            <div class="mt-2">
+                                <p class="text-sm text-gray-500">填写以下信息完成注册</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mt-5">
+                        <form>
+                            <div class="grid grid-cols-6 gap-4">
+                                <div class="col-span-6">
+                                    <label for="user-type" class="block text-sm font-medium text-gray-700">注册类型</label>
+                                    <div class="mt-1 flex rounded-md shadow-sm">
+                                        <button type="button" class="relative inline-flex items-center px-4 py-2 rounded-l-md border border-gray-300 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50 focus:z-10 focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500">
+                                            买家
+                                        </button>
+                                        <button type="button" class="-ml-px relative inline-flex items-center px-4 py-2 rounded-r-md border border-gray-300 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50 focus:z-10 focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500">
+                                            卖家
+                                        </button>
+                                    </div>
+                                </div>
+
+                                <div class="col-span-6 sm:col-span-3">
+                                    <label for="company-name" class="block text-sm font-medium text-gray-700">企业名称</label>
+                                    <input type="text" name="company-name" id="company-name" class="mt-1 focus:ring-blue-500 focus:border-blue-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+                                </div>
+
+                                <div class="col-span-6 sm:col-span-3">
+                                    <label for="industry" class="block text-sm font-medium text-gray-700">所属行业</label>
+                                    <select id="industry" name="industry" class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
+                                        <option>制造业</option>
+                                        <option>科技/互联网</option>
+                                        <option>消费品/零售</option>
+                                        <option>医疗健康</option>
+                                        <option>金融服务</option>
+                                        <option>房地产</option>
+                                        <option>其他</option>
+                                    </select>
+                                </div>
+
+                                <div class="col-span-6 sm:col-span-3">
+                                    <label for="contact-name" class="block text-sm font-medium text-gray-700">联系人</label>
+                                    <input type="text" name="contact-name" id="contact-name" class="mt-1 focus:ring-blue-500 focus:border-blue-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+                                </div>
+
+                                <div class="col-span-6 sm:col-span-3">
+                                    <label for="position" class="block text-sm font-medium text-gray-700">职位</label>
+                                    <input type="text" name="position" id="position" class="mt-1 focus:ring-blue-500 focus:border-blue-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+                                </div>
+
+                                <div class="col-span-6 sm:col-span-4">
+                                    <label for="email" class="block text-sm font-medium text-gray-700">电子邮箱</label>
+                                    <input type="email" name="email" id="email" class="mt-1 focus:ring-blue-500 focus:border-blue-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+                                </div>
+
+                                <div class="col-span-6 sm:col-span-3">
+                                    <label for="phone" class="block text-sm font-medium text-gray-700">联系电话</label>
+                                    <input type="tel" name="phone" id="phone" class="mt-1 focus:ring-blue-500 focus:border-blue-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+                                </div>
+
+                                <div class="col-span-6">
+                                    <label for="password" class="block text-sm font-medium text-gray-700">密码</label>
+                                    <input type="password" name="password" id="password" class="mt-1 focus:ring-blue-500 focus:border-blue-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+                                </div>
+
+                                <div class="col-span-6">
+                                    <div class="flex items-start">
+                                        <div class="flex items-center h-5">
+                                            <input id="terms" name="terms" type="checkbox" class="focus:ring-blue-500 h-4 w-4 text-blue-600 border-gray-300 rounded">
+                                        </div>
+                                        <div class="ml-3 text-sm">
+                                            <label for="terms" class="font-medium text-gray-700">我同意</label>
+                                            <p class="text-gray-500">智合并购平台的<a href="#" class="text-blue-600 hover:text-blue-500">服务条款</a>和<a href="#" class="text-blue-600 hover:text-blue-500">隐私政策</a></p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="mt-6">
+                                <button type="submit" class="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
+                                    提交注册
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Success Cases -->
+    <div class="bg-gray-100 py-16" id="cases">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="lg:text-center">
+                <h2 class="text-base text-blue-600 font-semibold tracking-wide uppercase">成功案例</h2>
+                <p class="mt-2 text-3xl leading-8 font-extrabold tracking-tight text-gray-900 sm:text-4xl">
+                    见证智能并购的力量
+                </p>
+                <p class="mt-4 max-w-2xl text-xl text-gray-500 lg:mx-auto">
+                    以下是我们近期协助完成的代表性交易案例
+                </p>
+            </div>
+
+            <div class="mt-16">
+                <div class="space-y-12 lg:space-y-0 lg:grid lg:grid-cols-3 lg:gap-x-8 lg:gap-y-12">
+                    <div class="bg-white p-6 rounded-lg shadow-md transition-all card-hover">
+                        <div class="flex items-center">
+                            <div class="flex-shrink-0 bg-blue-500 rounded-md p-3">
+                                <i class="fas fa-industry text-white text-xl"></i>
+                            </div>
+                            <div class="ml-4">
+                                <h3 class="text-lg font-medium text-gray-900">高端制造企业并购</h3>
+                                <p class="text-sm text-gray-500">交易金额: ¥2.8亿</p>
+                            </div>
+                        </div>
+                        <p class="mt-4 text-gray-600">
+                            某汽车零部件制造商通过平台匹配到战略投资者，最终以高于市场平均30%的溢价完成交易，实现创始团队完美退出。
+                        </p>
+                        <div class="mt-6 flex items-center">
+                            <div class="flex-shrink-0">
+                                <img class="h-10 w-10 rounded-full" src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=256&h=256&q=80" alt="">
+                            </div>
+                            <div class="ml-3">
+                                <p class="text-sm font-medium text-gray-900">张女士</p>
+                                <p class="text-sm text-gray-500">企业创始人</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-white p-6 rounded-lg shadow-md transition-all card-hover">
+                        <div class="flex items-center">
+                            <div class="flex-shrink-0 bg-green-500 rounded-md p-3">
+                                <i class="fas fa-laptop-code text-white text-xl"></i>
+                            </div>
+                            <div class="ml-4">
+                                <h3 class="text-lg font-medium text-gray-900">科技公司战略收购</h3>
+                                <p class="text-sm text-gray-500">交易金额: ¥5.2亿</p>
+                            </div>
+                        </div>
+                        <p class="mt-4 text-gray-600">
+                            某AI初创企业通过平台获得多家上市公司青睐，最终选择战略协同度最高的买家，保留核心团队并实现业务快速增长。
+                        </p>
+                        <div class="mt-6 flex items-center">
+                            <div class="flex-shrink-0">
+                                <img class="h-10 w-10 rounded-full" src="https://images.unsplash.com/photo-1519244703995-f4e0f30006d5?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=256&h=256&q=80" alt="">
+                            </div>
+                            <div class="ml-3">
+                                <p class="text-sm font-medium text-gray-900">王先生</p>
+                                <p class="text-sm text-gray-500">CTO</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-white p-6 rounded-lg shadow-md transition-all card-hover">
+                        <div class="flex items-center">
+                            <div class="flex-shrink-0 bg-purple-500 rounded-md p-3">
+                                <i class="fas fa-utensils text-white text-xl"></i>
+                            </div>
+                            <div class="ml-4">
+                                <h3 class="text-lg font-medium text-gray-900">连锁餐饮品牌整合</h3>
+                                <p class="text-sm text-gray-500">交易金额: ¥1.5亿</p>
+                            </div>
+                        </div>
+                        <p class="mt-4 text-gray-600">
+                            区域餐饮品牌通过平台对接全国性餐饮集团，实现品牌升级与供应链整合，交易后门店数量增长200%。
+                        </p>
+                        <div class="mt-6 flex items-center">
+                            <div class="flex-shrink-0">
+                                <img class="h-10 w-10 rounded-full" src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=256&h=256&q=80" alt="">
+                            </div>
+                            <div class="ml-3">
+                                <p class="text-sm font-medium text-gray-900">李先生</p>
+                                <p class="text-sm text-gray-500">CEO</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Pricing Section -->
+    <div class="bg-white py-16" id="pricing">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="lg:text-center">
+                <h2 class="text-base text-blue-600 font-semibold tracking-wide uppercase">服务方案</h2>
+                <p class="mt-2 text-3xl leading-8 font-extrabold tracking-tight text-gray-900 sm:text-4xl">
+                    灵活的服务套餐选择
+                </p>
+                <p class="mt-4 max-w-2xl text-xl text-gray-500 lg:mx-auto">
+                    根据您的需求选择最适合的服务方案，我们按效果收费，与您的成功紧密绑定
+                </p>
+            </div>
+
+            <div class="mt-20">
+                <div class="space-y-12 lg:space-y-0 lg:grid lg:grid-cols-3 lg:gap-x-8">
+                    <div class="relative bg-white border border-gray-200 rounded-2xl shadow-sm divide-y divide-gray-200 transition-all card-hover">
+                        <div class="p-6">
+                            <h3 class="text-lg font-medium text-gray-900">基础服务</h3>
+                            <p class="mt-4 text-sm text-gray-500">
+                                适合初步探索市场机会的企业
+                            </p>
+                            <p class="mt-8">
+                                <span class="text-4xl font-extrabold text-gray-900">¥9,800</span>
+                                <span class="text-base font-medium text-gray-500">/年</span>
+                            </p>
+                            <a href="#" class="mt-8 block w-full py-3 px-6 border border-transparent rounded-md text-center font-medium bg-blue-50 text-blue-700 hover:bg-blue-100">
+                                选择基础版
+                            </a>
+                        </div>
+                        <div class="pt-6 pb-8 px-6">
+                            <h4 class="sr-only">包含服务</h4>
+                            <ul class="space-y-4">
+                                <li class="flex items-start">
+                                    <div class="flex-shrink-0">
+                                        <i class="fas fa-check text-green-500"></i>
+                                    </div>
+                                    <p class="ml-3 text-sm text-gray-700">基础企业估值报告</p>
+                                </li>
+                                <li class="flex items-start">
+                                    <div class="flex-shrink-0">
+                                        <i class="fas fa-check text-green-500"></i>
+                                    </div>
+                                    <p class="ml-3 text-sm text-gray-700">每月5家匹配推荐</p>
+                                </li>
+                                <li class="flex items-start">
+                                    <div class="flex-shrink-0">
+                                        <i class="fas fa-check text-green-500"></i>
+                                    </div>
+                                    <p class="ml-3 text-sm text-gray-700">标准保密协议模板</p>
+                                </li>
+                                <li class="flex items-start">
+                                    <div class="flex-shrink-0">
+                                        <i class="fas fa-check text-green-500"></i>
+                                    </div>
+                                    <p class="ml-3 text-sm text-gray-700">基础数据室功能</p>
+                                </li>
+                                <li class="flex items-start">
+                                    <div class="flex-shrink-0">
+                                        <i class="fas fa-check text-green-500"></i>
+                                    </div>
+                                    <p class="ml-3 text-sm text-gray-700">交易成功收取3%佣金</p>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="relative bg-white border-2 border-blue-500 rounded-2xl shadow-sm divide-y divide-gray-200 transition-all card-hover">
+                        <div class="p-6">
+                            <div class="absolute top-0 inset-x-0 h-2 bg-gradient-to-r from-blue-400 to-blue-600 rounded-t-2xl"></div>
+                            <h3 class="text-lg font-medium text-gray-900">专业服务</h3>
+                            <p class="mt-4 text-sm text-gray-500">
+                                适合有明确交易需求的企业
+                            </p>
+                            <p class="mt-8">
+                                <span class="text-4xl font-extrabold text-gray-900">¥29,800</span>
+                                <span class="text-base font-medium text-gray-500">/年</span>
+                            </p>
+                            <a href="#" class="mt-8 block w-full py-3 px-6 border border-transparent rounded-md text-center font-medium bg-gradient-to-r from-blue-500 to-blue-600 text-white hover:from-blue-600 hover:to-blue-700">
+                                选择专业版
+                            </a>
+                        </div>
+                        <div class="pt-6 pb-8 px-6">
+                            <h4 class="sr-only">包含服务</h4>
+                            <ul class="space-y-4">
+                                <li class="flex items-start">
+                                    <div class="flex-shrink-0">
+                                        <i class="fas fa-check text-green-500"></i>
+                                    </div>
+                                    <p class="ml-3 text-sm text-gray-700">详细企业估值报告</p>
+                                </li>
+                                <li class="flex items-start">
+                                    <div class="flex-shrink-0">
+                                        <i class="fas fa-check text-green-500"></i>
+                                    </div>
+                                    <p class="ml-3 text-sm text-gray-700">每周5家匹配推荐</p>
+                                </li>
+                                <li class="flex items-start">
+                                    <div class="flex-shrink-0">
+                                        <i class="fas fa-check text-green-500"></i>
+                                    </div>
+                                    <p class="ml-3 text-sm text-gray-700">定制保密协议</p>
+                                </li>
+                                <li class="flex items-start">
+                                    <div class="flex-shrink-0">
+                                        <i class="fas fa-check text-green-500"></i>
+                                    </div>
+                                    <p class="ml-3 text-sm text-gray-700">高级数据室功能</p>
+                                </li>
+                                <li class="flex items-start">
+                                    <div class="flex-shrink-0">
+                                        <i class="fas fa-check text-green-500"></i>
+                                    </div>
+                                    <p class="ml-3 text-sm text-gray-700">专家初步咨询</p>
+                                </li>
+                                <li class="flex items-start">
+                                    <div class="flex-shrink-0">
+                                        <i class="fas fa-check text-green-500"></i>
+                                    </div>
+                                    <p class="ml-3 text-sm text-gray-700">交易成功收取2%佣金</p>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="relative bg-white border border-gray-200 rounded-2xl shadow-sm divide-y divide-gray-200 transition-all card-hover">
+                        <div class="p-6">
+                            <h3 class="text-lg font-medium text-gray-900">尊享服务</h3>
+                            <p class="mt-4 text-sm text-gray-500">
+                                适合高价值复杂交易需求
+                            </p>
+                            <p class="mt-8">
+                                <span class="text-4xl font-extrabold text-gray-900">定制</span>
+                            </p>
+                            <a href="#" class="mt-8 block w-full py-3 px-6 border border-transparent rounded-md text-center font-medium bg-blue-50 text-blue-700 hover:bg-blue-100">
+                                联系顾问
+                            </a>
+                        </div>
+                        <div class="pt-6 pb-8 px-6">
+                            <h4 class="sr-only">包含服务</h4>
+                            <ul class="space-y-4">
+                                <li class="flex items-start">
+                                    <div class="flex-shrink-0">
+                                        <i class="fas fa-check text-green-500"></i>
+                                    </div>
+                                    <p class="ml-3 text-sm text-gray-700">全面尽职调查支持</p>
+                                </li>
+                                <li class="flex items-start">
+                                    <div class="flex-shrink-0">
+                                        <i class="fas fa-check text-green-500"></i>
+                                    </div>
+                                    <p class="ml-3 text-sm text-gray-700">专属交易经理</p>
+                                </li>
+                                <li class="flex items-start">
+                                    <div class="flex-shrink-0">
+                                        <i class="fas fa-check text-green-500"></i>
+                                    </div>
+                                    <p class="ml-3 text-sm text-gray-700">全程专家谈判支持</p>
+                                </li>
+                                <li class="flex items-start">
+                                    <div class="flex-shrink-0">
+                                        <i class="fas fa-check text-green-500"></i>
+                                    </div>
+                                    <p class="ml-3 text-sm text-gray-700">定制交易结构设计</p>
+                                </li>
+                                <li class="flex items-start">
+                                    <div class="flex-shrink-0">
+                                        <i class="fas fa-check text-green-500"></i>
+                                    </div>
+                                    <p class="ml-3 text-sm text-gray-700">整合期跟踪服务</p>
+                                </li>
+                                <li class="flex items-start">
+                                    <div class="flex-shrink-0">
+                                        <i class="fas fa-check text-green-500"></i>
+                                    </div>
+                                    <p class="ml-3 text-sm text-gray-700">阶梯式佣金方案</p>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Testimonials -->
+    <div class="bg-gradient-to-r from-blue-800 to-blue-600 py-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="lg:text-center">
+                <h2 class="text-base text-blue-300 font-semibold tracking-wide uppercase">客户评价</h2>
+                <p class="mt-2 text-3xl leading-8 font-extrabold tracking-tight text-white sm:text-4xl">
+                    听听我们的客户怎么说
+                </p>
+            </div>
+
+            <div class="mt-16 grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
+                <div class="bg-white p-6 rounded-lg shadow-lg">
+                    <div class="flex items-center">
+                        <div class="flex-shrink-0">
+                            <img class="h-12 w-12 rounded-full" src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=256&h=256&q=80" alt="">
+                        </div>
+                        <div class="ml-4">
+                            <h4 class="text-sm font-bold text-gray-900">张女士</h4>
+                            <p class="text-sm text-gray-500">制造业企业创始人</p>
+                            <div class="mt-1 flex text-yellow-400">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="mt-4 text-gray-600">
+                        "通过智合平台，我们找到了最理解企业价值的买家，交易价格超出预期30%，整个流程专业高效，特别感谢顾问团队的专业支持。"
+                    </p>
+                </div>
+
+                <div class="bg-white p-6 rounded-lg shadow-lg">
+                    <div class="flex items-center">
+                        <div class="flex-shrink-0">
+                            <img class="h-12 w-12 rounded-full" src="https://images.unsplash.com/photo-1519244703995-f4e0f30006d5?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=256&h=256&q=80" alt="">
+                        </div>
+                        <div class="ml-4">
+                            <h4 class="text-sm font-bold text-gray-900">王先生</h4>
+                            <p class="text-sm text-gray-500">科技公司联合创始人</p>
+                            <div class="mt-1 flex text-yellow-400">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="mt-4 text-gray-600">
+                        "AI匹配系统确实精准，推荐的几家投资方都与我们的技术路线高度契合，最终选择了战略协同度最高的上市公司，保留了核心团队并获得了发展资源。"
+                    </p>
+                </div>
+
+                <div class="bg-white p-6 rounded-lg shadow-lg">
+                    <div class="flex items-center">
+                        <div class="flex-shrink-0">
+                            <img class="h-12 w-12 rounded-full" src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=256&h=256&q=80" alt="">
+                        </div>
+                        <div class="ml-4">
+                            <h4 class="text-sm font-bold text-gray-900">李先生</h4>
+                            <p class="text-sm text-gray-500">投资机构总监</p>
+                            <div class="mt-1 flex text-yellow-400">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="mt-4 text-gray-600">
+                        "作为买方，平台的企业筛选工具帮助我们快速锁定符合投资策略的标的，尽职调查资料完整规范，大幅提高了工作效率。"
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- FAQ Section -->
+    <div class="bg-gray-50 py-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="lg:text-center">
+                <h2 class="text-base text-blue-600 font-semibold tracking-wide uppercase">常见问题</h2>
+                <p class="mt-2 text-3xl leading-8 font-extrabold tracking-tight text-gray-900 sm:text-4xl">
+                    您可能关心的问题
+                </p>
+            </div>
+
+            <div class="mt-12">
+                <dl class="space-y-10 md:space-y-0 md:grid md:grid-cols-2 md:gap-x-8 md:gap-y-12">
+                    <div>
+                        <dt class="text-lg leading-6 font-medium text-gray-900">
+                            平台如何保障企业信息的保密性？
+                        </dt>
+                        <dd class="mt-2 text-base text-gray-500">
+                            我们采用军工级数据加密技术，所有敏感信息均进行脱敏处理。在初步接触阶段，企业关键信息将被隐藏，只有在签署保密协议后才会逐步披露详细信息。平台设有严格的权限管理体系，确保信息仅对授权人员可见。
+                        </dd>
+                    </div>
+
+                    <div>
+                        <dt class="text-lg leading-6 font-medium text-gray-900">
+                            AI匹配系统的准确性如何？
+                        </dt>
+                        <dd class="mt-2 text-base text-gray-500">
+                            我们的AI系统基于10,000+真实并购案例训练，考虑行业特性、财务指标、战略方向等数百个维度，目前匹配精准度达到85%。系统会不断从新交易中学习优化，匹配准确率持续提升。
+                        </dd>
+                    </div>
+
+                    <div>
+                        <dt class="text-lg leading-6 font-medium text-gray-900">
+                            交易佣金如何计算？
+                        </dt>
+                        <dd class="mt-2 text-base text-gray-500">
+                            佣金比例根据服务套餐不同在1%-3%之间，按交易金额阶梯计算。我们采用"不成功不收费"原则，只有交易最终完成时才收取佣金。具体费率可在服务协议中约定。
+                        </dd>
+                    </div>
+
+                    <div>
+                        <dt class="text-lg leading-6 font-medium text-gray-900">
+                            整个并购流程通常需要多长时间？
+                        </dt>
+                        <dd class="mt-2 text-base text-gray-500">
+                            通过平台标准化流程，一般交易可在3-6个月内完成，比传统方式快40%。时间主要取决于尽职调查复杂度和谈判进度，我们提供全流程时间节点管理工具帮助推进。
+                        </dd>
+                    </div>
+
+                    <div>
+                        <dt class="text-lg leading-6 font-medium text-gray-900">
+                            平台上的买家/卖家都经过审核吗？
+                        </dt>
+                        <dd class="mt-2 text-base text-gray-500">
+                            所有注册用户均需通过严格的企业实名认证和资质审核。我们对买家的资金实力、收购意向真实性进行核查，对卖家的企业资质、产权清晰度进行验证，确保交易对手方质量。
+                        </dd>
+                    </div>
+
+                    <div>
+                        <dt class="text-lg leading-6 font-medium text-gray-900">
+                            如何开始使用平台服务？
+                        </dt>
+                        <dd class="mt-2 text-base text-gray-500">
+                            只需完成简单注册和企业认证，即可创建企业档案并开始使用基础功能。如需全面服务，可选择相应服务套餐，我们的客户经理将全程协助您完成后续步骤。
+                        </dd>
+                    </div>
+                </dl>
+            </div>
+        </div>
+    </div>
+
+    <!-- CTA Section -->
+    <div class="bg-white">
+        <div class="max-w-7xl mx-auto py-16 px-4 sm:px-6 lg:px-8">
+            <div class="bg-blue-700 rounded-lg shadow-xl overflow-hidden lg:grid lg:grid-cols-2 lg:gap-4">
+                <div class="pt-10 pb-12 px-6 sm:pt-16 sm:px-16 lg:py-16 lg:pr-0 xl:py-20 xl:px-20">
+                    <div class="lg:self-center">
+                        <h2 class="text-3xl font-extrabold text-white sm:text-4xl">
+                            <span class="block">准备开启您的并购之旅？</span>
+                            <span class="block">我们的专家团队随时为您服务</span>
+                        </h2>
+                        <p class="mt-4 text-lg leading-6 text-blue-200">
+                            无论您是企业主还是投资者，填写简单信息，我们将安排专属顾问为您提供免费咨询。
+                        </p>
+                        <a href="#" class="mt-8 bg-white border border-transparent rounded-md shadow px-5 py-3 inline-flex items-center text-base font-medium text-blue-600 hover:bg-blue-50">
+                            预约咨询
+                        </a>
+                    </div>
+                </div>
+                <div class="-mt-6 aspect-w-5 aspect-h-3 md:aspect-w-2 md:aspect-h-1">
+                    <img class="transform translate-x-6 translate-y-6 rounded-md object-cover object-left-top sm:translate-x-16 lg:translate-y-20" src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80" alt="App screenshot">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800" id="contact">
+        <div class="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
+                <div class="col-span-2">
+                    <h3 class="text-sm font-semibold text-gray-400 tracking-wider uppercase">关于智合并购</h3>
+                    <p class="mt-4 text-base text-gray-300">
+                        中国领先的AI赋能企业并购平台，致力于通过技术创新提升并购交易效率，为买卖双方创造更大价值。
+                    </p>
+                    <div class="mt-4 flex space-x-6">
+                        <a href="#" class="text-gray-400 hover:text-gray-300">
+                            <i class="fab fa-weixin text-xl"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-gray-300">
+                            <i class="fab fa-weibo text-xl"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-gray-300">
+                            <i class="fab fa-linkedin text-xl"></i>
+                        </a>
+                    </div>
+                </div>
+                <div>
+                    <h3 class="text-sm font-semibold text-gray-400 tracking-wider uppercase">服务</h3>
+                    <ul class="mt-4 space-y-4">
+                        <li>
+                            <a href="#" class="text-base text-gray-300 hover:text-white">企业估值</a>
+                        </li>
+                        <li>
+                            <a href="#" class="text-base text-gray-300 hover:text-white">交易匹配</a>
+                        </li>
+                        <li>
+                            <a href="#" class="text-base text-gray-300 hover:text-white">尽职调查</a>
+                        </li>
+                        <li>
+                            <a href="#" class="text-base text-gray-300 hover:text-white">交易支持</a>
+                        </li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-sm font-semibold text-gray-400 tracking-wider uppercase">联系我们</h3>
+                    <ul class="mt-4 space-y-4">
+                        <li>
+                            <p class="text-base text-gray-300">上海市浦东新区张江高科技园区</p>
+                        </li>
+                        <li>
+                            <p class="text-base text-gray-300">400-888-8888</p>
+                        </li>
+                        <li>
+                            <p class="text-base text-gray-300">contact@zhihmerge.com</p>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="mt-12 border-t border-gray-700 pt-8 flex flex-col md:flex-row justify-between">
+                <p class="text-base text-gray-400">
+                    &copy; 2023 智合并购平台. 保留所有权利.
+                </p>
+                <div class="mt-4 md:mt-0 flex space-x-6">
+                    <a href="#" class="text-gray-400 hover:text-gray-300 text-sm">隐私政策</a>
+                    <a href="#" class="text-gray-400 hover:text-gray-300 text-sm">服务条款</a>
+                    <a href="#" class="text-gray-400 hover:text-gray-300 text-sm">法律声明</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Login Modal (hidden by default) -->
+    <div class="fixed z-50 inset-0 overflow-y-auto hidden" aria-labelledby="modal-title" role="dialog" aria-modal="true" id="loginModal">
+        <div class="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
+            <div class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" aria-hidden="true"></div>
+            <span class="hidden sm:inline-block sm:align-middle sm:h-screen" aria-hidden="true">&#8203;</span>
+            <div class="inline-block align-bottom bg-white rounded-lg px-4 pt-5 pb-4 text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-sm sm:w-full sm:p-6">
+                <div>
+                    <div class="mx-auto flex items-center justify-center h-12 w-12 rounded-full bg-blue-100">
+                        <i class="fas fa-user text-blue-600"></i>
+                    </div>
+                    <div class="mt-3 text-center sm:mt-5">
+                        <h3 class="text-lg leading-6 font-medium text-gray-900" id="modal-title">登录您的账户</h3>
+                        <div class="mt-2">
+                            <p class="text-sm text-gray-500">请选择您的角色类型并登录</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="mt-5 sm:mt-6">
+                    <div class="grid grid-cols-2 gap-3">
+                        <button type="button" class="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-blue-600 text-base font-medium text-white hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 sm:text-sm">
+                            买家登录
+                        </button>
+                        <button type="button" class="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-gray-600 text-base font-medium text-white hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500 sm:text-sm">
+                            卖家登录
+                        </button>
+                    </div>
+                    <div class="mt-4 border-t border-gray-200 pt-4">
+                        <form>
+                            <div>
+                                <label for="email" class="block text-sm font-medium text-gray-700">电子邮箱</label>
+                                <div class="mt-1">
+                                    <input type="email" name="email" id="email" class="shadow-sm focus:ring-blue-500 focus:border-blue-500 block w-full sm:text-sm border-gray-300 rounded-md" placeholder="you@example.com">
+                                </div>
+                            </div>
+                            <div class="mt-4">
+                                <label for="password" class="block text-sm font-medium text-gray-700">密码</label>
+                                <div class="mt-1">
+                                    <input type="password" name="password" id="password" class="shadow-sm focus:ring-blue-500 focus:border-blue-500 block w-full sm:text-sm border-gray-300 rounded-md" placeholder="••••••••">
+                                </div>
+                            </div>
+                            <div class="mt-4 flex items-center justify-between">
+                                <div class="flex items-center">
+                                    <input id="remember-me" name="remember-me" type="checkbox" class="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded">
+                                    <label for="remember-me" class="ml-2 block text-sm text-gray-700">记住我</label>
+                                </div>
+                                <div class="text-sm">
+                                    <a href="#" class="font-medium text-blue-600 hover:text-blue-500">忘记密码?</a>
+                                </div>
+                            </div>
+                            <div class="mt-5">
+                                <button type="submit" class="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
+                                    登录
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Mobile menu toggle
+        document.getElementById('mobile-menu-button').addEventListener('click', function() {
+            document.getElementById('mobile-menu').classList.toggle('hidden');
+            // Toggle between menu and close icons
+            const svgs = this.querySelectorAll('svg');
+            svgs.forEach(svg => svg.classList.toggle('hidden'));
+        });
+
+        // Modal toggle functions
+        function toggleLoginModal() {
+            document.getElementById('loginModal').classList.toggle('hidden');
+            document.getElementById('registrationModal').classList.add('hidden');
+        }
+
+        function toggleRegistrationModal() {
+            document.getElementById('registrationModal').classList.toggle('hidden');
+            document.getElementById('loginModal').classList.add('hidden');
+        }
+
+        // Close modals when clicking outside
+        window.addEventListener('click', function(event) {
+            if (event.target === document.getElementById('loginModal')) {
+                toggleLoginModal();
+            }
+            if (event.target === document.getElementById('registrationModal')) {
+                toggleRegistrationModal();
+            }
+        });
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Card hover effect
+        document.querySelectorAll('.card-hover').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.classList.add('shadow-lg');
+            });
+            card.addEventListener('mouseleave', function() {
+                this.classList.remove('shadow-lg');
+            });
+        });
+    </script>
+</body>
 </html>
